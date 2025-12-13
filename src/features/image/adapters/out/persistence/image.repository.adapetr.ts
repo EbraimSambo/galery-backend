@@ -11,11 +11,10 @@ export class ImageRepositoryAdapter implements ImageRepository {
     ) { }
 
     async create(image: Image): Promise<Image> {
-        const create = await this.database.image.create({
+        return await this.database.image.create({
             data: {
                 ...image,
             }
-        })
-        return ImageMapper.toDomain(create)
+        }).then((res) => ImageMapper.toDomain(res));
     }
 }

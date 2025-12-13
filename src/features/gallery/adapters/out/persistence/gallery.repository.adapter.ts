@@ -11,23 +11,19 @@ export class GalleryRepositoryAdapter implements GalleryRepository {
     ) { }
 
     async create(gallery: Gallery): Promise<Gallery> {
-        const createGallery = await this.database.gallery.create({
+        return await this.database.gallery.create({
             data: {
                 ...gallery
             }
-        })
-
-        return GalleryMapper.toDomain(createGallery);
+        }).then((res) => GalleryMapper.toDomain(res));
     }
 
 
     async findById(id: string): Promise<Gallery | null> {
-        const gallery = await this.database.gallery.findUnique({
+        return await this.database.gallery.findUnique({
             where: {
                 id,
             }
-        })
-
-        return gallery ? GalleryMapper.toDomain(gallery) : null;
+        }).then((res) => res ? GalleryMapper.toDomain(res) : null);
     }
 }
