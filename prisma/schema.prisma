@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../src/shared/database/infrastructure/generated/prisma"
+  engineType      = "binary"
+  previewFeatures = []
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Gallery {
+  internalId Int       @id @default(autoincrement())
+  id         String    @unique @default(cuid())
+  name       String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+  iamges     Image[]
+}
+
+model Image {
+  internalId        Int       @id @default(autoincrement())
+  id                String    @unique @default(cuid())
+  name              String
+  path              String
+  published         Boolean   @default(false)
+  gallery           Gallery   @relation(fields: [galleryInternalId], references: [internalId])
+  galleryInternalId Int       @map("gallery_internal_id")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
+}
