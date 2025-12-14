@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Image } from "src/features/image/domain/entities/image.entity";
-import { ImageRepository } from "src/features/image/domain/ports/iamge.repository";
+import { ImageRepository } from "src/features/image/domain/ports/image.repository";
 import { DataBaseService } from "src/shared/database/infrastructure/database.service";
 import { ImageMapper } from "../mappers/image.mapper";
 

@@ -1,7 +1,8 @@
 
 import { Image as PrismaImage } from "src/shared/database/infrastructure/generated/prisma";
 import { CreateImageProps, Image } from "src/features/image/domain/entities/image.entity";
-import { CreateImageDto } from "../../In/rest/dto/create-image.dto";
+import { CreateImageDto } from "../../In/rest/create-image.dto";
+import { ImageResponseDto } from "../../In/rest/image-repsonse.dto";
 
 
 export class ImageMapper {
@@ -35,5 +36,20 @@ export class ImageMapper {
             path: dto.path,
             published: dto.published
         };
+    }
+
+
+    static toDto(image: Image): ImageResponseDto {
+        return new ImageResponseDto(
+            image.id,
+            image.name,
+            image.path,
+            image.published,
+            image.createdAt,
+            image.updatedAt,
+            image.deletedAt,
+            image.internalId,
+            image.galleryInternalId
+        );
     }
 }

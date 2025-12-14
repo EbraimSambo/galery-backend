@@ -86,6 +86,9 @@ Prisma.NullTypes = NullTypes
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -115,6 +118,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -132,8 +140,8 @@ const config = {
   "previewFeatures": [],
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
-  "activeProvider": "sqlite",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../src/shared/database/infrastructure/generated/prisma\"\n  engineType      = \"binary\"\n  previewFeatures = []\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Gallery {\n  internalId Int       @id @default(autoincrement())\n  id         String    @unique @default(cuid())\n  name       String\n  createdAt  DateTime  @default(now())\n  updatedAt  DateTime  @updatedAt\n  deletedAt  DateTime?\n  iamges     Image[]\n}\n\nmodel Image {\n  internalId        Int       @id @default(autoincrement())\n  id                String    @unique @default(cuid())\n  name              String\n  path              String\n  published         Boolean   @default(false)\n  gallery           Gallery   @relation(fields: [galleryInternalId], references: [internalId])\n  galleryInternalId Int       @map(\"gallery_internal_id\")\n  createdAt         DateTime  @default(now())\n  updatedAt         DateTime  @updatedAt\n  deletedAt         DateTime?\n}\n"
+  "activeProvider": "postgresql",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../src/shared/database/infrastructure/generated/prisma\"\n  engineType      = \"binary\"\n  previewFeatures = []\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Gallery {\n  internalId Int       @id @default(autoincrement())\n  id         String    @unique @default(cuid())\n  name       String\n  createdAt  DateTime  @default(now())\n  updatedAt  DateTime  @updatedAt\n  deletedAt  DateTime?\n  iamges     Image[]\n}\n\nmodel Image {\n  internalId        Int       @id @default(autoincrement())\n  id                String    @unique @default(cuid())\n  name              String\n  path              String\n  published         Boolean   @default(false)\n  gallery           Gallery   @relation(fields: [galleryInternalId], references: [internalId])\n  galleryInternalId Int       @map(\"gallery_internal_id\")\n  createdAt         DateTime  @default(now())\n  updatedAt         DateTime  @updatedAt\n  deletedAt         DateTime?\n}\n"
 }
 
 config.runtimeDataModel = JSON.parse("{\"models\":{\"Gallery\":{\"fields\":[{\"name\":\"internalId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"iamges\",\"kind\":\"object\",\"type\":\"Image\",\"relationName\":\"GalleryToImage\"}],\"dbName\":null},\"Image\":{\"fields\":[{\"name\":\"internalId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"path\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"published\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"gallery\",\"kind\":\"object\",\"type\":\"Gallery\",\"relationName\":\"GalleryToImage\"},{\"name\":\"galleryInternalId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"gallery_internal_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
