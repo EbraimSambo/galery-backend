@@ -19,7 +19,7 @@ export class CreateImageUseCaseImpl implements CreateImageUseCase {
         return await this.repository.create(ImageMapper.toDomainProps(data, gallery.internalId));
     }
 
-    async validateGallery(galleryId: string): Promise<Gallery> {
+    private async validateGallery(galleryId: string): Promise<Gallery> {
         const gallery = await this.galleryService.findById(galleryId);
 
         if (!gallery) throw new NotFoundException("Gallery Not Found");

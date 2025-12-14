@@ -26,7 +26,7 @@ export class GalleryMapper {
         }
     }
 
-    static toDto(gallery: GalleryResponseDto): GalleryResponseDto {
+    static toDto(gallery: Gallery): GalleryResponseDto {
         return new GalleryResponseDto(
             gallery.id,
             gallery.name,
@@ -34,5 +34,16 @@ export class GalleryMapper {
             gallery.updatedAt,
             gallery.updatedAt
         );
+    }
+
+    static toPersistence(entity: Gallery) {
+        return {
+            name: entity.name,
+            internalId: entity.internalId,
+            id: entity.id,
+            createdAt: entity.createdAt,
+            updatedAt: entity.updatedAt,
+            deletedAt: entity.deletedAt,
+        }
     }
 }

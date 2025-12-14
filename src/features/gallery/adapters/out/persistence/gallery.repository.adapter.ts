@@ -12,9 +12,7 @@ export class GalleryRepositoryAdapter implements GalleryRepository {
 
     async create(gallery: Gallery): Promise<Gallery> {
         return await this.database.gallery.create({
-            data: {
-                ...gallery
-            }
+            data: GalleryMapper.toPersistence(gallery)
         }).then((res) => GalleryMapper.toDomain(res));
     }
 

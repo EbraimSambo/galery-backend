@@ -2,7 +2,7 @@
 import { Image as PrismaImage } from "src/shared/database/infrastructure/generated/prisma";
 import { CreateImageProps, Image } from "src/features/image/domain/entities/image.entity";
 import { CreateImageDto } from "../../In/rest/create-image.dto";
-import { ImageResponseDto } from "../../In/rest/image-repsonse.dto";
+import { ImageResponseDto } from "../../In/rest/image-response.dto";
 
 
 export class ImageMapper {
@@ -51,5 +51,19 @@ export class ImageMapper {
             image.internalId,
             image.galleryInternalId
         );
+    }
+
+    static toPersistence(entity: Image) {
+        return {
+            id: entity.id,
+            internalId: entity.internalId,
+            name: entity.name,
+            path: entity.path,
+            published: entity.published,
+            galleryInternalId: entity.galleryInternalId,
+            createdAt: entity.createdAt,
+            updatedAt: entity.updatedAt,
+            deletedAt: entity.deletedAt,
+        }
     }
 }
