@@ -15,4 +15,10 @@ export class ImageRepositoryAdapter implements ImageRepository {
             data: ImageMapper.toPersistence(image),
         }).then((res) => ImageMapper.toDomain(res));
     }
+
+    async findById(id: string): Promise<Image | null> {
+        return await this.database.image.findUnique({
+            where: { id },
+        }).then((res) => res ? ImageMapper.toDomain(res) : null);
+    }
 }

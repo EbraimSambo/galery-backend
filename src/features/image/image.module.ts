@@ -6,6 +6,8 @@ import { CreateImageUseCase } from './domain/ports/create-image.use-case';
 import { CreateImageUseCaseImpl } from './application/ports/in/create-image.use-case-impl';
 import { GalleryModule } from '../gallery/gallery.module';
 import { ImageController } from './adapters/In/rest/image.controller';
+import { ImageServiceImpl } from './application/ports/in/image.service.impl';
+import { ImageService } from './domain/ports/image.service';
 
 @Module({
     imports: [
@@ -23,6 +25,10 @@ import { ImageController } from './adapters/In/rest/image.controller';
         {
             provide: CreateImageUseCase,
             useClass: CreateImageUseCaseImpl
+        },
+        {
+            provide: ImageService,
+            useClass: ImageServiceImpl
         }
     ]
 })
