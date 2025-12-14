@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
+import { Gallery } from "src/features/gallery/domain/entities/gallery.entity";
 import { GalleryService } from "src/features/gallery/domain/ports/gallery.service";
 import { ImageMapper } from "src/features/image/adapters/out/mappers/image.mapper";
 
 import { CreateImageProps, Image } from "src/features/image/domain/entities/image.entity";
 import { CreateImageUseCase } from "src/features/image/domain/ports/create-image.use-case";
 import { ImageRepository } from "src/features/image/domain/ports/image.repository";
-import { Gallery } from "src/shared/database/infrastructure/generated/prisma";
 
 @Injectable()
 export class CreateImageUseCaseImpl implements CreateImageUseCase {
