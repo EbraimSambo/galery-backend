@@ -16,7 +16,7 @@ Backend para a aplicação de Galeria, construído com [NestJS](https://nestjs.c
 
 ## Arquitetura
 
-O projeto segue uma **Arquitetura Modular** com princípios de **Clean Architecture / Hexagonal** dentro de cada feature.
+O projeto segue uma **Hexagonal** dentro de cada feature.
 
 Estrutura de pastas (`src/features/`):
 -   **domain**: Entidades e regras de negócio.
