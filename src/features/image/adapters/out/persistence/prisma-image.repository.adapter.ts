@@ -6,7 +6,7 @@ import { ImageMapper } from "../mappers/image.mapper";
 import { Pagination, PropsPagination } from "src/shared/domain/entities/pagination";
 
 @Injectable()
-export class ImageRepositoryAdapter implements ImageRepository {
+export class PrismaImageRepositoryAdapter implements ImageRepository {
     constructor(
         private database: DataBaseService
     ) { }
@@ -25,7 +25,7 @@ export class ImageRepositoryAdapter implements ImageRepository {
 
     async findAll(props: PropsPagination): Promise<Pagination<Image>> {
         const { page, limit } = props;
-        const [ images, total ] = await this.database.$transaction([
+        const [images, total] = await this.database.$transaction([
             this.database.image.findMany({
                 skip: (page - 1) * limit,
                 take: limit,

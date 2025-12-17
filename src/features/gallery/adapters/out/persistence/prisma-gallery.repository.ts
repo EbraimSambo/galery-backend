@@ -5,8 +5,8 @@ import { DataBaseService } from 'src/shared/database/infrastructure/database.ser
 import { GalleryMapper } from '../mappers/gallery.mapper';
 
 @Injectable()
-export class GalleryRepositoryAdapter implements GalleryRepository {
-  constructor(private database: DataBaseService) {}
+export class PrismaGalleryRepositoryAdapter implements GalleryRepository {
+  constructor(private database: DataBaseService) { }
 
   async create(gallery: Gallery): Promise<Gallery> {
     return await this.database.gallery
