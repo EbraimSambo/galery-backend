@@ -9,7 +9,7 @@ import { ConfigModule } from '@nestjs/config';
     GalleryModule,
     ConfigModule.forRoot({
       isGlobal: true,
-    })
+    }),
   ],
 })
-export class AppModule { }
+export class AppModule {}

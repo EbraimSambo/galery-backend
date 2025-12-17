@@ -10,26 +10,21 @@ import { ImageServiceImpl } from './application/ports/in/image.service.impl';
 import { ImageService } from './domain/ports/image.service';
 
 @Module({
-    imports: [
-        DataBaseModule,
-        GalleryModule
-    ],
-    controllers: [
-        ImageController
-    ],
-    providers: [
-        {
-            provide: ImageRepository,
-            useClass: ImageRepositoryAdapter
-        },
-        {
-            provide: CreateImageUseCase,
-            useClass: CreateImageUseCaseImpl
-        },
-        {
-            provide: ImageService,
-            useClass: ImageServiceImpl
-        }
-    ]
+  imports: [DataBaseModule, GalleryModule],
+  controllers: [ImageController],
+  providers: [
+    {
+      provide: ImageRepository,
+      useClass: ImageRepositoryAdapter,
+    },
+    {
+      provide: CreateImageUseCase,
+      useClass: CreateImageUseCaseImpl,
+    },
+    {
+      provide: ImageService,
+      useClass: ImageServiceImpl,
+    },
+  ],
 })
-export class ImageModule { }
+export class ImageModule {}

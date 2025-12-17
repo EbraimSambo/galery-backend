@@ -9,31 +9,27 @@ import { CreateGalleryUseCase } from './domain/ports/create-gallery.use-case';
 import { CreateGalleryUseCaseImpl } from './application/ports/in/create-gallery.use-case.impl';
 
 @Module({
-    imports: [
-        DataBaseModule
-    ],
-    providers: [
-        {
-            provide: GalleryRepository,
-            useClass: GalleryRepositoryAdapter
-        },
-        {
-            provide: GalleryService,
-            useClass: GalleryServiceImpl
-        },
-        {
-            provide: CreateGalleryUseCase,
-            useClass: CreateGalleryUseCaseImpl
-        }
-    ],
-    controllers: [
-        GalleryController
-    ],
-    exports: [
-        {
-            provide: GalleryService,
-            useClass: GalleryServiceImpl
-        }
-    ]
+  imports: [DataBaseModule],
+  providers: [
+    {
+      provide: GalleryRepository,
+      useClass: GalleryRepositoryAdapter,
+    },
+    {
+      provide: GalleryService,
+      useClass: GalleryServiceImpl,
+    },
+    {
+      provide: CreateGalleryUseCase,
+      useClass: CreateGalleryUseCaseImpl,
+    },
+  ],
+  controllers: [GalleryController],
+  exports: [
+    {
+      provide: GalleryService,
+      useClass: GalleryServiceImpl,
+    },
+  ],
 })
-export class GalleryModule { }
+export class GalleryModule {}
