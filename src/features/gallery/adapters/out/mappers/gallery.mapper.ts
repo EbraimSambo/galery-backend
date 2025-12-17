@@ -18,10 +18,6 @@ export class GalleryMapper {
     );
   }
 
-  static toDomainProps(data: CreateGalleryProps): Gallery {
-    return new Gallery(data.name);
-  }
-
   static toCreateProps(dto: CreateGalleryDto): CreateGalleryProps {
     return {
       name: dto.name,

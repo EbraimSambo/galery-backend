@@ -25,4 +25,8 @@ export class Gallery {
     if (updatedAt) this.updatedAt = updatedAt;
     if (deletedAt) this.deletedAt = deletedAt;
   }
+
+  static create(name: string): Gallery {
+    return new Gallery(name);
+  }
 }
