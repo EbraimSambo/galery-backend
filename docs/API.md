@@ -22,14 +22,12 @@ http://localhost:4000/swagger
 
 Através do Swagger UI, você pode visualizar todos os endpoints disponíveis, seus esquemas de requisição e resposta, e testar as requisições diretamente no navegador.
 
-## Autenticação
-
-(Adicionar detalhes sobre autenticação se aplicável, ex: JWT, Bearer Token)
-
 ## Endpoints Principais
 
-Abaixo estão alguns dos módulos principais da API (consulte o Swagger para lista completa):
+A API é focada no gerenciamento de galeria e imagens:
 
--   **Auth**: Endpoints de autenticação.
--   **Users**: Gerenciamento de usuários.
--   **Gallery**: Gerenciamento de itens da galeria.
+-   **Gallery**: Gerenciamento de álbuns e itens da galeria.
+-   **Image**: Upload e manipulação de imagens.
+
+Consulte o Swagger (`/swagger`) para a lista completa de rotas e schemas.
+

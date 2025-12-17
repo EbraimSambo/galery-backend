@@ -14,6 +14,19 @@ Backend para a aplicação de Galeria, construído com [NestJS](https://nestjs.c
 -   **Documentação**: Swagger
 -   **Banco de Dados**: SQLite (Dev) / PostgreSQL (Prod - configurável)
 
+## Arquitetura
+
+O projeto segue uma **Arquitetura Modular** com princípios de **Clean Architecture / Hexagonal** dentro de cada feature.
+
+Estrutura de pastas (`src/features/`):
+-   **domain**: Entidades e regras de negócio.
+-   **application**: Casos de uso e serviços.
+-   **adapters**: Controladores e repositórios (implementação de portas).
+
+Features principais:
+-   `gallery`: Lógica de negócios da galeria.
+-   `image`: Gerenciamento de imagens.
+
 ## Primeiros Passos
 
 ### Instalação Rápida
