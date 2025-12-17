@@ -1,1 +1,0 @@
-ALTER TABLE `images_table` ADD `published` text NOT NULL;
